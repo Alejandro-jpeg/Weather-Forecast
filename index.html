@@ -5,10 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast</title>
-    <link rel="reset" href="./Develop/normalize.css">
-    <link rel="stylesheet" href="./Develop/style.css">
+    <link rel="reset" href="./Assets/normalize.css">
+    <link rel="stylesheet" href="./Assets/style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Weather Forecast</h1>
+    </header>
+
+    <main>
+
+        <aside id = "side-panel"> 
+            <form id = "city-search" action="">
+                <label for="city-input">Search For a City:</label>
+                <input type="text" name="city" id="city-input">
+                <input type="button" value="Submit">
+            </form>
+            <nav id="search-history">
+                <!-- BUTTONS WILL BE ADDED HERE ACCORDING TO SEARCH HISTORY -->
+                <button class="history-button">Example City This has to change eventually</button>
+            </nav>
+        </aside>
+
+        <section id="city-info">
+            <div id="selected-city">
+                <h2 id="city-name">Placeholder</h2>
+                <p id = "temperature">Temp:</p>
+                <p id = "wind">Wind:</p>
+                <p id = "humidity">Humidity:</p>
+            </div>
+            <div id = "forecast">
+                <h2>5 Day Forecast</h2>
+                <div id="card-holder">
+                    <!-- CARD DAYS ARE GOING TO BE ADDED HERE -->
+                    <!-- EXAMPLE CARD -->
+                    <div class="card">
+                        <!-- CARD CONTENT -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
 </body>
 </html>

@@ -1,0 +1,44 @@
+
+
+main{
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr 4fr;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+}
+
+#side-panel{
+    
+}
+
+#city-search{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.history-button{
+    min-width: 100%;
+}
+
+#city-info{
+    flex-basis: auto;
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+}
+
+#selected-city{
+    
+}
+
+#forecast{
+    align-self: center;
+}
+
+#card-holder{
+    
+}
