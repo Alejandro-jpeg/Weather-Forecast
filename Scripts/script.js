@@ -1,8 +1,9 @@
 let apiKey = 'e7eee4fd93fbef038bf4a28dff8a59c7';
 let submit = document.getElementById('search-button');
 
-let city;
 
+//This function allows the user to search for a city and doesnt allow the program to run if there is no city selected
+let city;
 function searchCity(){
     city = document.getElementById('city-input').value;
     if(!city){
@@ -11,8 +12,12 @@ function searchCity(){
     }
     startSearch();
     //TODO: CREATE A HISTORY SEARCH BUTTON
+    //TODO: SAVE SEARCHED CITY IN LOCAL STORAGE
 }
 
+    //TODO: ADD A FUNCTION THAT CLEARS THE CONTENT OF THE PAGE ON SUMBMIT CLICK
+
+//This function calls the API and it calls the other 2 functions
 function startSearch(){
     let weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + '&units=metric';
 
@@ -27,7 +32,7 @@ function startSearch(){
         })
 }
 
-//TODO: METRIC SYSTEM
+//This function displays the current weather on the top of the cards
 function displayCity(data){
     let cityName = document.getElementById('city-name');
     let temp = document.getElementById('temp');
@@ -41,14 +46,14 @@ function displayCity(data){
 }
 
 
-//TODO: OTRA FUNCION PARA CREAR CARDS CON INFORMACION DE CADA UNO DE LOS DÍAS
+//This function dynamically creates cards for the following 5 days
 function createCards(data){
     let today = data.list[0].dt;
     let tomorrow = 86400; //24 hours in UNIX time
     let cardHolder = document.getElementById('card-holder')
 
     for(var i= 0; i < data.list.length; i++){
-        if(data.list[i].dt === today + tomorrow){
+        if(data.list[i].dt === today + tomorrow || data.list[i].dt === today){
 
            let card = document.createElement("div");
            card.classList.add('card')
@@ -56,7 +61,7 @@ function createCards(data){
            let cityName = document.createElement("p");
            cityName.setAttribute("id","city-name")
            cityName.classList.add('city-name');
-            cityName.textContent = data.city.name;
+           cityName.textContent = data.city.name +" "+ data.list[i].dt_txt;
 
            let icon = document.createElement("p");
            icon.setAttribute("id","icon");
@@ -91,5 +96,5 @@ function createCards(data){
 }
 
 
-
 submit.addEventListener('click',searchCity);
+
