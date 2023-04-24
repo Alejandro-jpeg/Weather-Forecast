@@ -16,10 +16,10 @@
     <main>
 
         <aside id = "side-panel"> 
+            <h2>Search for a City:</h2>
             <form id = "city-search" action="">
-                <label for="city-input">Search For a City:</label>
-                <input type="text" name="city" id="city-input">
-                <input type="button" value="Submit">
+                <input  id="city-input" type="text" name="city-input"></input>
+                <button id="search-button" type="button" value="Submit">Submit</button>
             </form>
             <nav id="search-history">
                 <!-- BUTTONS WILL BE ADDED HERE ACCORDING TO SEARCH HISTORY -->
@@ -40,13 +40,11 @@
                     <!-- CARD DAYS ARE GOING TO BE ADDED HERE -->
                     <!-- EXAMPLE CARD -->
                     <div class="card">
-                        <!-- 
-                            DATE
-                            ICON
-                            TEMP
-                            WIND
-                            HUMIDITY
-                         -->
+                         <p id="date"></p>
+                         <p id="icon"></p>
+                         <p id="temp"></p>
+                         <p id="wnd"></p>
+                         <p id="humid"></p>
                     </div>
                 </div>
             </div>
