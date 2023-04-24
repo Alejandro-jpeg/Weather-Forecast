@@ -12,7 +12,7 @@ header{
 }
 
 #side-panel{
-    
+    padding: 1em;    
 }
 
 #city-search{
@@ -32,7 +32,7 @@ header{
 }
 
 #selected-city{
-    
+    border: 2px solid black;
 }
 
 #forecast{
@@ -40,5 +40,15 @@ header{
 }
 
 #card-holder{
-    
+    border: 2px solid pink;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card{
+    min-width: 200px;
+    border: 1px solid blue;
 }
