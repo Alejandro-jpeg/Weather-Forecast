@@ -19,7 +19,7 @@ function searchCity(){
 
 //This function calls the API and it calls the other 2 functions
 function startSearch(){
-    let weatherUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + '&units=metric';
+    let weatherUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey + '&units=metric';
 
     fetch(weatherUrl)
         .then(function(response){
