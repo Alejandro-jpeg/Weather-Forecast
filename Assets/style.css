@@ -20,8 +20,13 @@ header{
     grid-template-columns: 1fr;
 }
 
+#search-history{
+    margin: 2rem, auto;
+}
+
 .history-button{
     min-width: 100%;
+    margin-top: 1rem;
 }
 
 #city-info{

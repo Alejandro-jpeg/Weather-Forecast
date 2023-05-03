@@ -1,21 +1,31 @@
 let apiKey = 'e7eee4fd93fbef038bf4a28dff8a59c7';
 let submit = document.getElementById('search-button');
-
+let featuredCity = document.getElementById('selected-city');
+let historyContainer = document.getElementById('search-history');
 
 //This function allows the user to search for a city and doesnt allow the program to run if there is no city selected
 let city;
-function searchCity(){
+function searchCity(event){
+    event.preventDefault;
     city = document.getElementById('city-input').value;
     if(!city){
         return
         /*TODO: ADD A WARNING TO THE USER*/
     }
+    localStorage.setItem(city, city);
     startSearch();
-    //TODO: CREATE A HISTORY SEARCH BUTTON
-    //TODO: SAVE SEARCHED CITY IN LOCAL STORAGE
+    createHistoryBtn(city);
 }
 
-    //TODO: ADD A FUNCTION THAT CLEARS THE CONTENT OF THE PAGE ON SUMBMIT CLICK
+//creating search history buttons
+function createHistoryBtn(city){
+    city = localStorage.getItem(city);
+    let historyButton = document.createElement('button');
+    historyButton.classList.add('history-button');
+    historyButton.textContent = city;
+    historyContainer.appendChild(historyButton);
+    historyButton.addEventListener('click',startSearch(city));
+}
 
 //This function calls the API and it calls the other 2 functions
 function startSearch(){
@@ -26,31 +36,31 @@ function startSearch(){
             return response.json();
         })
         .then(function(data){
+            console.log(data);
             displayCity(data);
-            console.log(data.list[0]);
             createCards(data);
         })
 }
 
-//This function displays the current weather on the top of the cards
+//This function displays the selected city on a big "header"
 function displayCity(data){
-    let cityName = document.getElementById('city-name');
+    let cityDate = document.getElementById('city-name');
     let temp = document.getElementById('temp');
     let wind = document.getElementById('wind');
     let humidity = document.getElementById('humidity');
 
-    cityName.textContent = data.city.name;
+    cityDate.textContent = data.city.name;
     temp.textContent = "Temperature: " + data.list[0].main.temp + " °C";
     wind.textContent = "Wind Velocity: " + data.list[0].wind.speed + " m/s";
     humidity.textContent = "Humidity: " + data.list[0].main.humidity + " %";
 }
-
 
 //This function dynamically creates cards for the following 5 days
 function createCards(data){
     let today = data.list[0].dt;
     let tomorrow = 86400; //24 hours in UNIX time
     let cardHolder = document.getElementById('card-holder')
+    cardHolder.textContent = '';
 
     for(var i= 0; i < data.list.length; i++){
         if(data.list[i].dt === today + tomorrow || data.list[i].dt === today){
@@ -58,13 +68,16 @@ function createCards(data){
            let card = document.createElement("div");
            card.classList.add('card')
 
-           let cityName = document.createElement("p");
-           cityName.setAttribute("id","city-name")
-           cityName.classList.add('city-name');
-           cityName.textContent = data.city.name +" "+ data.list[i].dt_txt;
+           let cityDate = document.createElement("p");
+           cityDate.setAttribute("id","city-date")
+           cityDate.classList.add('city-dame');
+           cityDate.textContent = data.list[i].dt_txt;
 
-           let icon = document.createElement("p");
+           let icon = document.createElement("img");
+           let iconId = data.list[i].weather[0].icon
+           let iconSource = "https://openweathermap.org/img/wn/" + iconId + "@2x.png"
            icon.setAttribute("id","icon");
+           icon.setAttribute('src', iconSource);
            icon.classList.add('icon');
 
            let temp = document.createElement("p");
@@ -83,13 +96,12 @@ function createCards(data){
            humidity.textContent = "Humidity: " + data.list[i].main.humidity + " %";
 
            cardHolder.appendChild(card);
-           card.appendChild(cityName);
+           card.appendChild(cityDate);
            card.appendChild(icon);
            card.appendChild(temp);
            card.appendChild(wind);
            card.appendChild(humidity);
 
-            console.log(data.list[i]);
             today = today + tomorrow;
         }
     }
